@@ -5,13 +5,14 @@ require_relative 'data_mapper_setup'
 require_relative 'models/pair'
 
 class MyApp < Sinatra::Base
+
+  set :port, 4000
+
   get '/' do
-    'Hello MyApp!'
-    erb :'/index'
+    'To input to the database enter "/set?VALUE_1_TO_STORE=VALUE_2_TO_STORE in addition to the current URL'
   end
 
   get '/set' do
-    puts params
     params.each do |key, value|
       pair_entry = Pair.new(pair_key: key, pair_value: value)
       if pair_entry.save
