@@ -7,6 +7,7 @@ require File.join(File.dirname(__FILE__), '..', 'app/my_app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'database_cleaner'
 require './app/models/pair'
 
 Capybara.app = MyApp
@@ -30,7 +31,6 @@ Capybara.app = MyApp
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
-  RSpec.configure do |config|
   # Everything in this block runs once before all the tests run
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
