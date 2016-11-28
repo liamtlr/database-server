@@ -9,7 +9,7 @@ class MyApp < Sinatra::Base
   set :port, 4000
 
   get '/' do
-    'To input to the database enter "/set?VALUE_1_TO_STORE=VALUE_2_TO_STORE in addition to the current URL'
+    'To input to the database enter "/set?VALUE_1_TO_STORE=VALUE_2_TO_STORE" in addition to the current URL'
   end
 
   get '/set' do
@@ -18,6 +18,7 @@ class MyApp < Sinatra::Base
       if pair_entry.save
         puts "Pair created: #{key}: #{value}"
         redirect ('/')
+      else
         puts "Something went wrong"
       end
     end
@@ -25,7 +26,11 @@ class MyApp < Sinatra::Base
 
   get '/get' do
     pair_entry = Pair.first(:pair_key => params[:key])
-    pair_entry.return_value
+    unless pair_entry.nil?
+      "Return value: #{pair_entry.return_value}"
+    else
+      "Nothing to return"
+    end
   end
 
   # start the server if ruby file executed directly
