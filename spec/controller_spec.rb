@@ -7,6 +7,11 @@ describe MyApp do
       visit ('/set')
       expect(page.status_code).to eq 200
     end
+
+    it 'is a valid route' do
+      visit ('/set')
+      expect(page).to have_content "yo"
+    end
   end
 
 end
