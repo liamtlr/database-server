@@ -9,4 +9,8 @@ class Pair
   property :pair_key,      String
   property :pair_value,    String
 
+  def create_pair(key, value)
+    self.Pair.create(pair_key: key, pair_value: value)
+  end
+
 end
